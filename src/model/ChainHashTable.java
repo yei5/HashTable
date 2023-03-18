@@ -50,6 +50,28 @@ public class ChainHashTable<K extends Comparable<K>,V> implements IHashTable<K,V
         }
     }
 
+    public String print(){
+        String msg ="";
+        for (int i=0;i<length;i++){
+            msg +="[ ";
+            if(list[i]!=null){
+                HNode<K,V>node = list[i];
+                while(node!=null){
+                    if(node.getNext()==null){
+                        msg+=node.getValue().toString()+". ";
+                    }else {
+                        msg += node.getValue().toString() + ", ";
+                    }
+                    node = node.getNext();
+                }
+
+            }
+            msg+="]\n";
+
+        }
+        return msg;
+    }
+
     public int hash(K key){
         return key.hashCode()%length;
     }
